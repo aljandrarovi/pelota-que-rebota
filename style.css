@@ -1,0 +1,69 @@
+/* ---- Reset ---- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* sin scroll: el canvas ocupa toda la pantalla */
+  background: linear-gradient(180deg, #3c096c 0%, #17032b 55%, #000000 100%);
+}
+
+/* El canvas de p5 es inline por defecto; display:block evita un espacio fantasma */
+canvas {
+  display: block;
+}
+
+/* ---- Titulo tenebroso centrado (naranja + morado neon) ---- */
+.titulo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  pointer-events: none; /* deja pasar el cursor para que la pelota se pueda detener */
+  font-family: "Creepster", "Chiller", system-ui, cursive;
+  font-weight: 400;
+  font-size: clamp(3.5rem, 13vw, 9rem);
+  letter-spacing: 0.06em;
+  text-align: center;
+  white-space: nowrap;
+
+  /* Degradado naranja -> morado */
+  background: linear-gradient(180deg, #ffd166 0%, #ff8c1a 40%, #c77dff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 3px #12031f;
+
+  /* Sombra oscura (relieve) + varios halos neon para que resalte */
+  filter:
+    drop-shadow(0 2px 0 #12031f)
+    drop-shadow(0 0 6px #e0aaff)
+    drop-shadow(0 0 18px #b15cff)
+    drop-shadow(0 0 34px #7b2cbf);
+  animation: brillo 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes brillo {
+  from {
+    filter:
+      drop-shadow(0 2px 0 #12031f)
+      drop-shadow(0 0 5px #e0aaff)
+      drop-shadow(0 0 14px #b15cff)
+      drop-shadow(0 0 26px #7b2cbf);
+  }
+  to {
+    filter:
+      drop-shadow(0 2px 0 #12031f)
+      drop-shadow(0 0 10px #ff8c1a)
+      drop-shadow(0 0 24px #b15cff)
+      drop-shadow(0 0 46px #7b2cbf);
+  }
+}
